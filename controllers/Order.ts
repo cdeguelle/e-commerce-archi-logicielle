@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import OrderModel, { Order } from "../models/Order"
+import OrderModel from "../models/Order"
 
 const OrderController = {
 	createOrder(req: Request, res: Response) {

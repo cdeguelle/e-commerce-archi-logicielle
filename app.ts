@@ -2,7 +2,7 @@ require("dotenv").config()
 import express from "express"
 import mongoose from "mongoose"
 import helmet from "helmet"
-import { productRouter } from "./routes"
+import { productRouter, orderRouter, userRouter } from "./routes"
 import createError from "http-errors"
 import cors from "cors"
 import compression from "compression"
@@ -43,4 +43,6 @@ app.use(cors())
 app.use(compression())
 
 app.use("/product", productRouter)
+app.use("/order", orderRouter)
+app.use("/user", userRouter)
 app.use((_req: any, _res: any, next: any) => next(createError(404)))
