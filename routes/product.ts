@@ -1,30 +1,21 @@
 import express from "express"
+import ProductController from "../controllers/Product"
 
 const router = express.Router()
 
 // GET /products
-router.get("/", (req, res) => {
-	// Code pour récupérer tous les produits
-})
+router.get("/", ProductController.getAllProducts)
 
 // GET /products/:id
-router.get("/:id", (req, res) => {
-	// Code pour récupérer un produit par son ID
-})
+router.get("/:id", ProductController.getProductById)
 
 // POST /products
-router.post("/", (req, res) => {
-	// Code pour créer un nouveau produit
-})
+router.post("/", ProductController.createProducts)
 
 // PUT /products/:id
-router.put("/:id", (req, res) => {
-	// Code pour mettre à jour un produit par son ID
-})
+router.put("/:id", ProductController.createProduct)
 
 // DELETE /products/:id
-router.delete("/:id", (req, res) => {
-	// Code pour supprimer un produit par son ID
-})
+router.delete("/:id", ProductController.createProduct)
 
 export default router

@@ -1,5 +1,12 @@
 require("dotenv").config()
-const express = require("express")
+import express from "express"
+import mongoose from "mongoose"
+import helmet from "helmet"
+import { productRouter } from "./routes"
+import createError from "http-errors"
+import cors from "cors"
+import compression from "compression"
+
 const app = express()
 const port = 3000
 
@@ -11,13 +18,11 @@ app.listen(port, () => {
 	console.log(`Example app listening on port ${port}`)
 })
 
-const mongoose = require("mongoose")
-
 mongoose.set("strictQuery", false)
 
 async function mongoConnexion() {
 	try {
-		await mongoose.connect(process.env.MONGO_URI)
+		await mongoose.connect(process.env.MONGO_URI!)
 
 		mongoose.connection.on("error", (err: { message: any }) => {
 			console.log(err?.message)
@@ -31,3 +36,11 @@ async function mongoConnexion() {
 }
 
 mongoConnexion()
+
+app.use(helmet())
+app.use(express.json({ limit: "10mb" }))
+app.use(cors())
+app.use(compression())
+
+app.use("/product", productRouter)
+app.use((_req: any, _res: any, next: any) => next(createError(404)))
