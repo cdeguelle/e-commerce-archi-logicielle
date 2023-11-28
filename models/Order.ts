@@ -5,7 +5,7 @@ interface OrderItem {
 	quantity: number
 }
 
-interface Order {
+export interface Order {
 	id: string
 	items: OrderItem[]
 	createdAt: Date
