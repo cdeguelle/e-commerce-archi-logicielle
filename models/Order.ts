@@ -1,3 +1,5 @@
+import { Schema, model, Document } from "mongoose"
+
 interface OrderItem {
 	productId: string
 	quantity: number
@@ -10,4 +12,16 @@ interface Order {
 	updatedAt: Date
 }
 
-export default Order
+const OrderSchema = new Schema<Order>(
+	{
+		id: { type: String, required: true },
+		items: { type: [{ productId: String, quantity: Number }], required: true },
+		createdAt: { type: Date, default: Date.now },
+		updatedAt: { type: Date, default: Date.now },
+	},
+	{ timestamps: true }
+)
+
+const OrderModel = model<Order>("Order", OrderSchema)
+
+export default OrderModel
