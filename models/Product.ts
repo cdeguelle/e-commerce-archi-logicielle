@@ -1,9 +1,10 @@
 import { Schema, model, Document } from "mongoose"
 
-interface Product {
+export interface Product {
 	id: string
 	name: string
-	description: string
+	genres: string[]
+	year: number | null
 	price: number
 	createdAt: Date
 	updatedAt: Date
@@ -13,7 +14,8 @@ const ProductSchema = new Schema<Product>(
 	{
 		id: { type: String, required: true },
 		name: { type: String, required: true },
-		description: { type: String, required: true },
+		genres: { type: [String], required: true },
+		year: { type: Number },
 		price: { type: Number, required: true },
 		createdAt: { type: Date, default: Date.now },
 		updatedAt: { type: Date, default: Date.now },

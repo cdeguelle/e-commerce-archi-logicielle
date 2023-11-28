@@ -1,14 +1,56 @@
 import { Request, Response } from "express"
-import Product from "../models/Product"
+import ProductModel, { Product } from "../models/Product"
 
-// Obtenir tous les produits
-export const getAllProducts = async (req: Request, res: Response) => {}
+const ProductController = {
+	getAllProducts(req: Request, res: Response) {
+		ProductModel.find()
+			.then((products) => {
+				res.status(200).json({ success: true, products })
+			})
+			.catch((err) => {
+				res.status(500).json({ success: false, message: err.message })
+			})
+	},
 
-// Obtenir un produit par son ID
-export const getProductById = async (req: Request, res: Response) => {}
+	getProductById(req: Request, res: Response) {
+		ProductModel.findById(req.params.id)
+			.then((product) => {
+				res.status(200).json({ success: true, product })
+			})
+			.catch((err) => {
+				res.status(500).json({ success: false, message: err.message })
+			})
+	},
 
-// Créer un nouveau produit
-export const createProduct = async (req: Request, res: Response) => {}
+	createProduct(req: Request, res: Response) {
+		const product = new ProductModel(req.body)
+		product
+			.save()
+			.then((product) => {
+				res.status(201).json({ success: true, product })
+			})
+			.catch((err) => {
+				res.status(500).json({ success: false, message: err.message })
+			})
+	},
 
-// Créer des produits en masse
-export const createProducts = async (req: Request, res: Response) => {}
+	createProducts(req: Request, res: Response) {
+		const products = req.body
+		const productsToCreate: Product[] = []
+		products.forEach(async (product: any) => {
+			const productToCreate = new ProductModel({
+				id: product.tconst,
+				name: product.primaryTitle,
+				genres: product.genres.split(","),
+				year: product.startYear === "\\N" ? null : product.startYear,
+				price: 62,
+			})
+			productsToCreate.push(productToCreate)
+		})
+		ProductModel.insertMany(productsToCreate).then((products) => {
+			res.status(201).json({ success: true, products })
+		})
+	},
+}
+
+export default ProductController
