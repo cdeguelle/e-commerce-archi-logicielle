@@ -1,6 +1,6 @@
-import { Schema, model, Document } from "mongoose"
+import { Schema, model } from "mongoose"
 
-interface User {
+export interface User {
 	id: string
 	email: string
 	password: string
