@@ -1,38 +1,21 @@
 import express from "express"
+import OrderController from "../controllers/Order"
 
 const router = express.Router()
 
 // GET /orders
-router.get("/", (req, res) => {
-	// Récupérer toutes les commandes
-	res.send("Liste des commandes")
-})
+router.get("/", OrderController.getAllOrders)
 
 // GET /orders/:id
-router.get("/:id", (req, res) => {
-	const orderId = req.params.id
-	// Récupérer la commande avec l'ID spécifié
-	res.send(`Commande avec l'ID ${orderId}`)
-})
+router.get("/:id", OrderController.getOrder)
 
 // POST /orders
-router.post("/", (req, res) => {
-	// Créer une nouvelle commande
-	res.send("Nouvelle commande créée")
-})
+router.post("/", OrderController.createOrder)
 
 // PUT /orders/:id
-router.put("/:id", (req, res) => {
-	const orderId = req.params.id
-	// Mettre à jour la commande avec l'ID spécifié
-	res.send(`Commande avec l'ID ${orderId} mise à jour`)
-})
+router.put("/:id", OrderController.updateOrder)
 
 // DELETE /orders/:id
-router.delete("/:id", (req, res) => {
-	const orderId = req.params.id
-	// Supprimer la commande avec l'ID spécifié
-	res.send(`Commande avec l'ID ${orderId} supprimée`)
-})
+router.delete("/:id", OrderController.deleteOrder)
 
 export default router
