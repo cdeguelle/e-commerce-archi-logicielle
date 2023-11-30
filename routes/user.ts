@@ -5,12 +5,12 @@ import isLogin from "../middlewares/isLogin"
 const router = express.Router()
 
 // GET /users/:id
-router.get("/:id", isLogin, UserController.getUserById)
+router.get("/:id", UserController.getUserById)
 
 // PUT /users/:id
-router.put("/:id", isLogin, UserController.updateUser)
+router.put("/:id", UserController.updateUser)
 
 // DELETE /users/:id
-router.delete("/:id", isLogin, UserController.deleteUser)
+router.delete("/:id", UserController.deleteUser)
 
 export default router

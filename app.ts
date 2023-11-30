@@ -6,7 +6,7 @@ import createError from "http-errors"
 import cors from "cors"
 import compression from "compression"
 
-import { productRouter, orderRouter, userRouter, authRouter } from "./routes"
+import { productRouter, orderRouter, userRouter, authRouter, cartRouter } from "./routes"
 
 const app = express()
 const port = 3000
@@ -47,4 +47,5 @@ app.use("/product", productRouter)
 app.use("/order", orderRouter)
 app.use("/user", userRouter)
 app.use("/auth", authRouter)
+app.use("/cart", cartRouter)
 app.use((_req: any, _res: any, next: any) => next(createError(404)))

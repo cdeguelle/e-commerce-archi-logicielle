@@ -5,18 +5,18 @@ import isLogin from "../middlewares/isLogin"
 const router = express.Router()
 
 // GET /products
-router.get("/", isLogin, ProductController.getAllProducts)
+router.get("/", ProductController.getAllProducts)
 
 // GET /products/:id
-router.get("/:id", isLogin, ProductController.getProductById)
+router.get("/:id", ProductController.getProductById)
 
 // POST /products
-router.post("/", isLogin, ProductController.createProducts)
+router.post("/", ProductController.createProducts)
 
 // PUT /products/:id
-router.put("/:id", isLogin, ProductController.createProduct)
+router.put("/:id", ProductController.createProduct)
 
 // DELETE /products/:id
-router.delete("/:id", isLogin, ProductController.createProduct)
+router.delete("/:id", ProductController.createProduct)
 
 export default router

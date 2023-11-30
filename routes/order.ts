@@ -5,18 +5,18 @@ import isLogin from "../middlewares/isLogin"
 const router = express.Router()
 
 // GET /orders
-router.get("/", isLogin, OrderController.getAllOrders)
+router.get("/", OrderController.getAllOrders)
 
 // GET /orders/:id
-router.get("/:id", isLogin, OrderController.getOrder)
+router.get("/:id", OrderController.getOrder)
 
 // POST /orders
-router.post("/", isLogin, OrderController.createOrder)
+router.post("/", OrderController.createOrder)
 
 // PUT /orders/:id
-router.put("/:id", isLogin, OrderController.updateOrder)
+router.put("/:id", OrderController.updateOrder)
 
 // DELETE /orders/:id
-router.delete("/:id", isLogin, OrderController.deleteOrder)
+router.delete("/:id", OrderController.deleteOrder)
 
 export default router
