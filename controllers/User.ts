@@ -13,18 +13,6 @@ const UserController = {
 			})
 	},
 
-	// Créer un nouvel utilisateur
-	createUser(req: Request, res: Response) {
-		const user = new UserModel(req.body)
-		user.save()
-			.then((user) => {
-				res.status(201).json({ success: true, user })
-			})
-			.catch((err) => {
-				res.status(500).json({ success: false, message: err.message })
-			})
-	},
-
 	// Mettre à jour un utilisateur
 	updateUser(req: Request, res: Response) {
 		UserModel.findOneAndUpdate({ _id: req.params.id }, { $set: req.body }, { new: true })

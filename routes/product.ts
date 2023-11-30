@@ -1,21 +1,22 @@
 import express from "express"
 import ProductController from "../controllers/Product"
+import isLogin from "../middlewares/isLogin"
 
 const router = express.Router()
 
 // GET /products
-router.get("/", ProductController.getAllProducts)
+router.get("/", isLogin, ProductController.getAllProducts)
 
 // GET /products/:id
-router.get("/:id", ProductController.getProductById)
+router.get("/:id", isLogin, ProductController.getProductById)
 
 // POST /products
-router.post("/", ProductController.createProducts)
+router.post("/", isLogin, ProductController.createProducts)
 
 // PUT /products/:id
-router.put("/:id", ProductController.createProduct)
+router.put("/:id", isLogin, ProductController.createProduct)
 
 // DELETE /products/:id
-router.delete("/:id", ProductController.createProduct)
+router.delete("/:id", isLogin, ProductController.createProduct)
 
 export default router
