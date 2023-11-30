@@ -7,6 +7,7 @@ import cors from "cors"
 import compression from "compression"
 
 import { productRouter, orderRouter, userRouter, authRouter, cartRouter } from "./routes"
+import isLogin from "./middlewares/isLogin"
 
 const app = express()
 const port = 3000
@@ -43,9 +44,9 @@ app.use(express.json({ limit: "10mb" }))
 app.use(cors())
 app.use(compression())
 
-app.use("/product", productRouter)
-app.use("/order", orderRouter)
-app.use("/user", userRouter)
 app.use("/auth", authRouter)
-app.use("/cart", cartRouter)
+app.use("/product", isLogin, productRouter)
+app.use("/order", isLogin, orderRouter)
+app.use("/user", isLogin, userRouter)
+app.use("/cart", isLogin, cartRouter)
 app.use((_req: any, _res: any, next: any) => next(createError(404)))

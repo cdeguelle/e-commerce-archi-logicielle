@@ -11,7 +11,7 @@ interface CartItem {
 }
 
 interface Cart extends Document {
-	id: string
+	user_id: Schema.Types.ObjectId
 	items: CartItem[]
 	createdAt: Date
 	updatedAt: Date
@@ -19,7 +19,7 @@ interface Cart extends Document {
 
 const CartSchema = new Schema<Cart>(
 	{
-		id: { type: String, required: true },
+		user_id: { type: Schema.Types.ObjectId, required: true },
 		items: { type: [{ productId: String, quantity: Number }], required: true },
 		createdAt: { type: Date, default: Date.now },
 		updatedAt: { type: Date, default: Date.now },
