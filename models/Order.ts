@@ -6,7 +6,6 @@ interface OrderItem {
 }
 
 export interface Order {
-	id: string
 	items: OrderItem[]
 	createdAt: Date
 	updatedAt: Date
@@ -14,7 +13,6 @@ export interface Order {
 
 const OrderSchema = new Schema<Order>(
 	{
-		id: { type: String, required: true },
 		items: { type: [{ productId: String, quantity: Number }], required: true },
 		createdAt: { type: Date, default: Date.now },
 		updatedAt: { type: Date, default: Date.now },

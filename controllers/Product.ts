@@ -5,6 +5,8 @@ const ProductController = {
 	getAllProducts(req: Request, res: Response) {
 		ProductModel.find()
 			.then((products) => {
+				// limit: 1000
+				products = products.slice(0, 1000)
 				res.status(200).json({ success: true, products })
 			})
 			.catch((err) => {
